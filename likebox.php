@@ -1,0 +1,1 @@
+<div class="fb-like-box" data-href="http://www.facebook.com/pages/A-Voz-do-Advogado/506569536020966" data-width="300" data-height="490" data-show-faces="true" data-stream="true" data-header="true"></div>
