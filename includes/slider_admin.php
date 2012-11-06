@@ -36,7 +36,8 @@ function avoz_meta_box_cb()
     $text_css = array(
         "branco " => "small_text",
         "branco medio" => "medium_text",
-        "branco grande" => "very_big_white",
+        "branco grande" => "branco_grande",
+        "branco gigante" => "very_big_white",
         "preto" => "black",
         "preto medio" => "medium_black",
         "preto grande" => "big_black",
@@ -75,31 +76,66 @@ input.sliderpos { width:40px !important;}
         <input id="upload_image" type="text" name="kenburn_image" value="<?php echo esc_attr($values["kenburn_image"][0])?>" />
         <input type="button" id="upload_image_button" name="upload_image_button" value="selecionar imagem" />  
     </p> 
- 
-      <p> <label for="leg1">Efeito do titulo:</label> 
+ <table border=1>
+    <tr>
+        <th>Aplicar a:</th>
+        <th>Efeito</th>
+        <th>Estilo</th>
+        <th>Posição x</th>
+        <th>Posição y</th>
+    </tr>
+    <tr>
+      <td><select name="aplicar" id="aplicar">
+            <option value="1" selected>titulo</option>
+            <option value="2" >resumo</option>
+            <option value="3" >imagem destacada</option>
+            <option value="4" >texto</option>
+            <option value="5" >texto</option>
+       
+            </select>
+        </td>
+      <td> 
         <select name="leg1" id="leg1"> 
             <?php foreach ($text_efects as $key => $value): ?>
               <option value="<?=$value?>" <?php selected( $leg1, $value);?> ><?=$key; ?></option> 
             <?php endforeach;?>
         </select>
-
-        <label for="leg1f">Estilo:</label> 
+       </td>
+        <td>
         <select name="leg1f" id="leg1f"> 
             <?php foreach ($text_css as $key => $value): ?>
               <option value="<?=$value?>" <?php selected( $leg1f, $value);?> ><?=$key; ?></option> 
             <?php endforeach;?>
         </select>
-        <label for="leg1x">Pos X: </label>
+        </td><td>
         <input type="text" class="sliderpos" maxlength="3" name="leg1x" id="leg1x" value="<?=$leg1x?>" />
-
-        <label for="leg1y">Pos Y: </label>
+        </td><td>
         <input type="text" class="sliderpos" maxlength="3" name="leg1y" id="leg1y" value="<?=$leg1y ?>" />
-    </p> 
-    <P><a href="javascript:mostrar_preview(<?=$post->ID?>);">Exibir Demonstração</a> </p>
+    </td>
+    </tr>  <?php
+    //$mcs will be a multi-dimensional array with this method
+    $mcs = get_post_meta($post->ID,'mcs',true);
+    if ($mcs){
+    //Loop through each set of saved mc data (date, media, and title per item) and output inputs so the saved values can be edited and resaved. 
+    foreach ($mcs as $mc) : ?>
+    <tr>
+        <td><input type="text" name="mc[][date]" value="<?php echo $mc['date'] ?>" class="datepicker"/></td>
+        <td><input type="text" name="mc[][media]" value="<?php echo $mc['media'] ?>" /></td>
+        <td><input type="text" name="mc[][title]" value="<?php echo $mc['title'] ?>" /></td>
+        <td><a href="#" class="remove">Remove</a></td>
+    </tr>
+    <?php endforeach;
+    }
+     ?>
+
+</table> 
+ 
+    <p><a href="javascript:mostrar_preview(<?=$post->ID?>);">Exibir Demonstração</a> </p>
     <div id="slider_preview" style="display:none;width:920px;border:1px solid black;"></div>
 
-    
-    <?php  
+  <a href="#" class="add_new_media"></a>
+
+    <?php 
 }  
 
 function slideradmin_save( $post_id )  

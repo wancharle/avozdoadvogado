@@ -105,3 +105,17 @@ add_action( 'admin_head-post.php', 'slideradmin_js' );
 add_action( 'admin_head-post-new.php', 'slideradmin_js' );
 
 
+function get_videointerno() {
+
+    global $post, $posts;
+
+    $thumb = '';
+
+    ob_start();
+    ob_end_clean();
+
+    $output = preg_match_all('/(\<iframe.*\<\/iframe\>)/is', $post->post_content, $matches);
+    $thumb = $matches [1] [0];
+
+    return $thumb;
+}
