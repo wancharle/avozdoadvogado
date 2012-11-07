@@ -32,6 +32,14 @@ function avoz_meta_box_cb()
         5=>"imagem extra",
     );
 
+    $speeds = array(
+        400=>"bem rápido",
+        700=>"rápido",
+        1000 => "normal",
+        2000 => "lento",
+        3500 => "bem lento",
+    );
+
     $text_efects = array(
     "Sem efeito" => "off",
     "Desvanecer" => "fade",
@@ -42,6 +50,7 @@ function avoz_meta_box_cb()
     );
 
     $text_css = array(
+        " "    => "",
         "branco " => "small_text",
         "branco medio" => "medium_text",
         "branco grande" => "branco_grande",
@@ -143,6 +152,11 @@ input.sliderpos { width:40px !important;}
         <td><input type="text" class="sliderpos" maxlength="3" name="x<?=$i?>" value="<?=$values["x".$i][0]?>" /></td>
         <td><input type="text" class="sliderpos" maxlength="3" name="y<?=$i?>" value="<?=$values["y".$i][0]?>" /></td>
         <td><input type="text" class="sliderpos" maxlength="4" name="start<?=$i?>" value="<?=$values["start".$i][0]?>" /></td>
+         <td><select name="speed<?=$i?>" id="speed">
+             <?php foreach ($speeds as $value => $key): ?><option value="<?=$value?>" <?php selected( $values["speed".$i][0], $value);?> ><?=$key; ?></option><?php endforeach;?>
+          </select></td>
+
+
         <td><input type="text" name="extra<?=$i?>" value="<?=$values["extra".$i][0]?>" /></td>
     </tr> 
  
@@ -185,13 +199,16 @@ function slideradmin_save( $post_id )
              if ($_POST["tipo".$i] == "off"){
                 update_post_meta( $post_id, 'tipo'.$i, esc_attr($_POST['tipo'.$i])  );  
              }else{
-                $nef[]=$i;
+                $nef[$i]=intval($i);
                 update_post_meta( $post_id, 'tipo'.$i, esc_attr($_POST['tipo'.$i])  );  
                 update_post_meta( $post_id, 'aplicar'.$i, esc_attr($_POST['aplicar'.$i])  );  
                 update_post_meta( $post_id, 'cor_fundo'.$i, esc_attr($_POST['cor_fundo'.$i])  );  
                 update_post_meta( $post_id, 'cor'.$i, esc_attr($_POST['cor'.$i])  );  
                 update_post_meta( $post_id, 'x'.$i, esc_attr($_POST['x'.$i])  );  
                 update_post_meta( $post_id, 'y'.$i, esc_attr($_POST['y'.$i])  );  
+                update_post_meta( $post_id, 'start'.$i, esc_attr($_POST['start'.$i])  );  
+                update_post_meta( $post_id, 'extra'.$i, esc_attr($_POST['extra'.$i])  );  
+                update_post_meta( $post_id, 'speed'.$i, esc_attr($_POST['speed'.$i])  );  
             }
     } 
    

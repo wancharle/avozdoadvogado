@@ -39,15 +39,11 @@
 			<ul>	
 
                 <!-- FADE -->
-                <li data-transition="fade" data-slotamount="10"> 
-                    <img src="<?php bloginfo("template_directory");?>/images/slides/thumb1.jpg" alt=""  data-thumb="images/thumbs/thumb1.jpg">        
-                    <div class="caption sft medium_text"  data-x="400" data-y="240" data-speed="800" data-start="1000" data-easing="easeOutBack">SLIDE 1</div>
-                </li>
                <?php
                 global $post;
                 $post = get_post( $_GET["id"]);
                  setup_postdata($post); 
-                    get_template_part("slider_loop");    
+                    get_template_part("slider_loop2");    
                ?>	
 			</ul>
 			
