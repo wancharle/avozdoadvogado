@@ -24,6 +24,14 @@ function avoz_meta_box_cb()
     "Slot Fade Vertical" => "slotfade-vertical",
    ); 
 
+    $tipos = array(
+        1=>"titulo",
+        2=>"resumo",
+        3=>"imagem destacada",
+        4=>"texto extra",
+        5=>"imagem extra",
+    );
+
     $text_efects = array(
     "Sem efeito" => "off",
     "Desvanecer" => "fade",
@@ -57,6 +65,8 @@ function avoz_meta_box_cb()
     $check = isset( $values['kenburn_use_destaque'] ) ? esc_attr( $values['kenburn_use_destaque'][0] ) : '';  
     // We'll use this nonce field later on when saving.  
     wp_nonce_field( 'my_slideradmin_nonce', 'slideradmin_nonce' ); 
+
+    
     ?> 
     <p>Adicione efeitos ao slider. Funciona apenas para posts da categoria destaque</p> 
   
@@ -75,68 +85,80 @@ input.sliderpos { width:40px !important;}
     <p>Fundo:  
         <input id="upload_image" type="text" name="kenburn_image" value="<?php echo esc_attr($values["kenburn_image"][0])?>" />
         <input type="button" id="upload_image_button" name="upload_image_button" value="selecionar imagem" />  
-    </p> 
+    </p>
+
+<p> <label for="leg1">Efeito do titulo:</label>
+<select name="leg1" id="leg1">
+<?php foreach ($text_efects as $key => $value): ?>
+<option value="<?=$value?>" <?php selected( $leg1, $value);?> ><?=$key; ?></option>
+<?php endforeach;?>
+</select>
+
+<label for="leg1f">Estilo:</label>
+<select name="leg1f" id="leg1f">
+<?php foreach ($text_css as $key => $value): ?>
+<option value="<?=$value?>" <?php selected( $leg1f, $value);?> ><?=$key; ?></option>
+<?php endforeach;?>
+</select>
+<label for="leg1x">Pos X: </label>
+<input type="text" class="sliderpos" maxlength="3" name="leg1x" id="leg1x" value="<?=$leg1x?>" />
+
+<label for="leg1y">Pos Y: </label>
+<input type="text" class="sliderpos" maxlength="3" name="leg1y" id="leg1y" value="<?=$leg1y ?>" />
+</p> 
  <table border=1>
     <tr>
-        <th>Aplicar a:</th>
         <th>Efeito</th>
-        <th>Estilo</th>
+        <th>Aplicar a</th>
+        <th>Cor de fundo</th>
+        <th>Cor da letra</th>
         <th>Posição x</th>
         <th>Posição y</th>
+        <th>Inicia em</th>
+        <th>Extra</th>
     </tr>
-    <tr>
-      <td><select name="aplicar" id="aplicar">
-            <option value="1" selected>titulo</option>
-            <option value="2" >resumo</option>
-            <option value="3" >imagem destacada</option>
-            <option value="4" >texto</option>
-            <option value="5" >texto</option>
-       
-            </select>
-        </td>
-      <td> 
-        <select name="leg1" id="leg1"> 
-            <?php foreach ($text_efects as $key => $value): ?>
-              <option value="<?=$value?>" <?php selected( $leg1, $value);?> ><?=$key; ?></option> 
-            <?php endforeach;?>
-        </select>
-       </td>
-        <td>
-        <select name="leg1f" id="leg1f"> 
-            <?php foreach ($text_css as $key => $value): ?>
-              <option value="<?=$value?>" <?php selected( $leg1f, $value);?> ><?=$key; ?></option> 
-            <?php endforeach;?>
-        </select>
-        </td><td>
-        <input type="text" class="sliderpos" maxlength="3" name="leg1x" id="leg1x" value="<?=$leg1x?>" />
-        </td><td>
-        <input type="text" class="sliderpos" maxlength="3" name="leg1y" id="leg1y" value="<?=$leg1y ?>" />
-    </td>
-    </tr>  <?php
+    <?php   
+
     //$mcs will be a multi-dimensional array with this method
-    $mcs = get_post_meta($post->ID,'mcs',true);
-    if ($mcs){
-    //Loop through each set of saved mc data (date, media, and title per item) and output inputs so the saved values can be edited and resaved. 
-    foreach ($mcs as $mc) : ?>
+
+    for($i = 1; $i <= 8; $i++):?>
     <tr>
-        <td><input type="text" name="mc[][date]" value="<?php echo $mc['date'] ?>" class="datepicker"/></td>
-        <td><input type="text" name="mc[][media]" value="<?php echo $mc['media'] ?>" /></td>
-        <td><input type="text" name="mc[][title]" value="<?php echo $mc['title'] ?>" /></td>
-        <td><a href="#" class="remove">Remove</a></td>
-    </tr>
-    <?php endforeach;
-    }
-     ?>
+
+      <td><select  name="tipo<?=$i?>"> 
+            <?php foreach ($text_efects as $key => $value): ?><option value="<?=$value?>" <?php selected( $values["tipo".$i][0], $value);?> ><?=$key; ?></option> <?php endforeach;?>
+      </select></td>
+      
+      <td><select name="aplicar<?=$i?>" id="aplicar">
+             <?php foreach ($tipos as $value => $key): ?><option value="<?=$value?>" <?php selected( $values["aplicar".$i][0], $value);?> ><?=$key; ?></option><?php endforeach;?>
+          </select></td>
+
+
+      <td><select name="cor_fundo<?=$i?>" > 
+       <?php foreach ($text_css as $key => $value):?><option value="<?php echo 'fundo_'.$value;?>" <?php selected($values['cor_fundo'.$i][0], $value);?>><?=$key; ?></option><?php endforeach;?>
+       </select></td>
+      
+      <td><select name="cor<?=$i?>" > 
+        <?php foreach ($text_css as $key => $value): ?><option value="<?=$value?>" <?php selected( $values['cor'.$i][0], $value);?> ><?=$key; ?></option> <?php endforeach;?>
+         </select></td>
+        <td><input type="text" class="sliderpos" maxlength="3" name="x<?=$i?>" value="<?=$values["x".$i][0]?>" /></td>
+        <td><input type="text" class="sliderpos" maxlength="3" name="y<?=$i?>" value="<?=$values["y".$i][0]?>" /></td>
+        <td><input type="text" class="sliderpos" maxlength="4" name="start<?=$i?>" value="<?=$values["start".$i][0]?>" /></td>
+        <td><input type="text" name="extra<?=$i?>" value="<?=$values["extra".$i][0]?>" /></td>
+    </tr> 
+ 
+    <?php endfor;
+    ?>
+   
+    <?php  ?>
 
 </table> 
- 
     <p><a href="javascript:mostrar_preview(<?=$post->ID?>);">Exibir Demonstração</a> </p>
     <div id="slider_preview" style="display:none;width:920px;border:1px solid black;"></div>
 
   <a href="#" class="add_new_media"></a>
 
-    <?php 
-}  
+<?php  
+}
 
 function slideradmin_save( $post_id )  
 {  
@@ -149,6 +171,7 @@ function slideradmin_save( $post_id )
             'href' => array() // and those anchors can only have href attribute  
         )  
     );  
+
     // Make sure your data is set before trying to save it  
     
     if( isset( $_POST['kenburn_transition'] ) )  update_post_meta( $post_id, 'kenburn_transition', esc_attr($_POST['kenburn_transition'])  );  
@@ -156,6 +179,25 @@ function slideradmin_save( $post_id )
     if( isset( $_POST['leg1x'] ) )  update_post_meta( $post_id, 'leg1x', esc_attr($_POST['leg1x'])  );  
     if( isset( $_POST['leg1y'] ) )  update_post_meta( $post_id, 'leg1y', esc_attr($_POST['leg1y'])  );  
     if( isset( $_POST['leg1f'] ) )  update_post_meta( $post_id, 'leg1f', esc_attr($_POST['leg1f'])  );  
+   
+    $nef = array(); 
+    for  ($i = 1; $i <= 8; $i++){
+             if ($_POST["tipo".$i] == "off"){
+                update_post_meta( $post_id, 'tipo'.$i, esc_attr($_POST['tipo'.$i])  );  
+             }else{
+                $nef[]=$i;
+                update_post_meta( $post_id, 'tipo'.$i, esc_attr($_POST['tipo'.$i])  );  
+                update_post_meta( $post_id, 'aplicar'.$i, esc_attr($_POST['aplicar'.$i])  );  
+                update_post_meta( $post_id, 'cor_fundo'.$i, esc_attr($_POST['cor_fundo'.$i])  );  
+                update_post_meta( $post_id, 'cor'.$i, esc_attr($_POST['cor'.$i])  );  
+                update_post_meta( $post_id, 'x'.$i, esc_attr($_POST['x'.$i])  );  
+                update_post_meta( $post_id, 'y'.$i, esc_attr($_POST['y'.$i])  );  
+            }
+    } 
+   
+     update_post_meta($post_id, 'nef', $nef);
+    
+     update_post_meta($post_id, 'efeitos', $_POST['efeito']);
 
     if( isset( $_POST['kenburn_image'] ) )  
         update_post_meta( $post_id, 'kenburn_image', esc_attr($_POST['kenburn_image'])  );  
