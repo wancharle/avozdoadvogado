@@ -17,7 +17,7 @@
         add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
 
         $my_post = array(
-          'post_title'    => $nome,
+          'post_title'    => $nome.": ",
           'post_content'  => $msg,
           'post_status'   => 'draft',
           'post_author'   => 1,

@@ -38,6 +38,7 @@ $values = get_post_custom($post->ID);
         case 3:the_post_thumbnail();break;
         case 4: echo html_entity_decode($values["extra".$i][0]);break;
         case 5: echo "<img src='".$values["extra".$i][0]."' />"; break; 
+        case 6: echo "<a href='";the_permalink();echo "'>".$values["extra".$i][0]."</a>";break;
     };
 
     echo "</div>";
