@@ -32,6 +32,7 @@
 <script src="<?php bloginfo('template_directory'); ?>/js/mediaelement-and-player.min.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/fancybox/jquery.fancybox.pack.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/custom.js"></script>
-          <?php wp_footer(); ?>
+          <?php get_template_part("google_analytics");wp_footer(); ?>
+            
 </body>
 </html>

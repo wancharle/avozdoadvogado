@@ -48,8 +48,7 @@
 
 						<h2 class="title"><?php the_title()?> </h2>
 						
-						<span class="author">Postador por <a href="#">Admin</a></span>,
-						
+						<span class="author">Postador por <a href="#">Admin</a></span> 
 					</div><!--/ .entry-title-->					
                         <?php the_content() ?>					
  

@@ -4,8 +4,8 @@ require_once('includes/vcard-widget.php');
 require_once('includes/aovivo-widget.php');
 
 function avoz_widgets_init() {
-   wp_enqueue_style( 'farbtastic',get_template_directory_uri().'farbtastic/farbtastic.css' );
-   wp_enqueue_script("farbtastic",get_template_directory_uri()."farbtastic/farbtastic.js" ); 
+   wp_enqueue_style( 'farbtastic',get_template_directory_uri().'/farbtastic/farbtastic.css' );
+   wp_enqueue_script("farbtastic",get_template_directory_uri()."/farbtastic/farbtastic.js" ); 
 
     register_widget( 'Contacts_Widget' );
     register_widget( 'WP_Widget_aovivo');
