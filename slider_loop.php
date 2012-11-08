@@ -23,7 +23,7 @@ $values = get_post_custom($post->ID);
      <?php   }
      if ($values["leg1"][0] !="off"): ?>
    
-        <div class="caption <?=$values["leg1"][0]?> <?=$values["leg1f"][0]?>" data-x="<?=$values["leg1x"][0]?>" data-y="<?=$values["leg1y"][0]?>" data-speed="600" data-start="800" data-easing="easeOutBack"><a href="<?the_permalink?>"><?php the_title(); ?></a></div>
+        <div class="caption <?=$values["leg1"][0]?> <?=$values["leg1f"][0]?>" data-x="<?=$values["leg1x"][0]?>" data-y="<?=$values["leg1y"][0]?>" data-speed="600" data-start="800" data-easing="easeOutBack"><a href="<?the_permalink();?>"><?php the_title(); ?></a></div>
 <?php endif;
   if( isset($values["nef"])){
     $nef = unserialize($values["nef"][0]);
