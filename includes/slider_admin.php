@@ -30,6 +30,7 @@ function avoz_meta_box_cb()
         3=>"imagem destacada",
         4=>"texto extra",
         5=>"imagem extra",
+        6=>"texto extra (link)",
     );
 
     $speeds = array(
@@ -244,7 +245,7 @@ function slideradmin_js(){
         };
     });
     jQuery('.fabox').hide();
-    jQuery(".color_picker").click(function(){
+    jQuery(".color_picker").focus(function(){
         jQuery(this).next().slideToggle()
     });
      jQuery(".color_picker").blur(function(){
