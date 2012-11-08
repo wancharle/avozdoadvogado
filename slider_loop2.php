@@ -6,10 +6,11 @@ $values = get_post_custom($post->ID);
 
 <?php 
     if ($values["kenburn_use_destaque"][0] =="on"){
-        the_post_thumbnail();
+        echo '<a href="<?php the_permalink();?>">'; the_post_thumbnail() ;
+        echo '</a>';
     }else {
 ?>
-        <img  src="<?=$values['kenburn_image'][0];?>" alt="">
+            <a href="<?php the_permalink();?>" ><img  src="<?=$values['kenburn_image'][0];?>" alt=""></a>
         
         <div class="caption fade" data-x="0" data-y="0" data-speed="400" data-start="800"><?php the_post_thumbnail("slider");?></div>
 <?php } 
