@@ -97,8 +97,8 @@ jQuery(document).ready(function($) {
 
 			});		
 		$('.fullwidthbanner li').show();	
+           
 		}
-
 
 	})();
 	

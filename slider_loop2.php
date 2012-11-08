@@ -2,16 +2,15 @@
 $values = get_post_custom($post->ID);
 ?>
 
-    <li style="display:none"; data-transition="<?=$values["kenburn_transition"][0]?>" data-slotamount="10"> 										
+    <li style="display:none"; data-transition="<?=$values["kenburn_transition"][0]?>"> 										
 
 <?php 
     if ($values["kenburn_use_destaque"][0] =="on"){
-        echo '<a href="<?php the_permalink();?>">'; the_post_thumbnail() ;
-        echo '</a>';
-    }else {
-?>
-            <a href="<?php the_permalink();?>" ><img  src="<?=$values['kenburn_image'][0];?>" alt=""></a>
-        
+        $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID),'post-thumbnails');
+    ?>
+        <img  src="<?=$src[0]?>" alt="">
+    <?php }else { ?>
+        <img  src="<?=$values['kenburn_image'][0];?>" alt="">
         <div class="caption fade" data-x="0" data-y="0" data-speed="400" data-start="800"><?php the_post_thumbnail("slider");?></div>
 <?php } 
 
@@ -24,7 +23,7 @@ $values = get_post_custom($post->ID);
      <?php   }
      if ($values["leg1"][0] !="off"): ?>
    
-        <div class="caption <?=$values["leg1"][0]?> <?=$values["leg1f"][0]?>" data-x="<?=$values["leg1x"][0]?>" data-y="<?=$values["leg1y"][0]?>" data-speed="600" data-start="800" data-easing="easeOutBack"><?php the_title(); ?></div>
+        <div class="caption <?=$values["leg1"][0]?> <?=$values["leg1f"][0]?>" data-x="<?=$values["leg1x"][0]?>" data-y="<?=$values["leg1y"][0]?>" data-speed="600" data-start="800" data-easing="easeOutBack"><a href="<?the_permalink?>"><?php the_title(); ?></a></div>
 <?php endif;
   if( isset($values["nef"])){
     $nef = unserialize($values["nef"][0]);

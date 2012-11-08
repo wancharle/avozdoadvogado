@@ -128,6 +128,7 @@ website:   	http://www.themepunch.com
  font-size:28px;
  max-width:900px;
 }
+
 .big_yellow_dark_back {
 	position: absolute;
 	padding: 0 10px;
@@ -215,7 +216,9 @@ website:   	http://www.themepunch.com
 }			
 
 .caption a:hover { color: #ffa902; }	
-
+.medium_text a,.small_text a{
+ color: #f8f6ee; 
+}
 .caption.boxshadow {
     -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
