@@ -114,6 +114,13 @@ website:   	http://www.themepunch.com
 	line-height: 1.25 !important;
 }
 
+.caption.texto{
+	padding: 5px 10px;
+    line-height: 1.25 !important;
+	font-family: 'Open Sans', Arial; 
+    
+
+}
 .caption.medium_text, .caption.branco_grande{
 	position: absolute;
 	padding: 5px 10px;
@@ -207,7 +214,8 @@ website:   	http://www.themepunch.com
 .caption.noshadow {text-shadow: none;}	
 					
 .caption a {
-	color: #ff7302;
+	color: inherit;
+    text-decoration:none;
 	text-shadow: none;
 	-webkit-transition: all 0.2s ease-out;
 	-moz-transition: all 0.2s ease-out;

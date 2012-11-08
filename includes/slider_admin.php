@@ -81,6 +81,9 @@ function avoz_meta_box_cb()
   
 <style>
 input.sliderpos { width:40px !important;}
+input.color_picker {width:70px;}
+td {text-align:center;}
+input.size{ width:32px}
 </style>
     <p> <label for="_select">Transição:</label> 
         <select name="kenburn_transition" id="kenburn_transition"> 
@@ -115,15 +118,17 @@ input.sliderpos { width:40px !important;}
 <label for="leg1y">Pos Y: </label>
 <input type="text" class="sliderpos" maxlength="3" name="leg1y" id="leg1y" value="<?=$leg1y ?>" />
 </p> 
- <table border=1>
+ <table >
     <tr>
         <th>Efeito</th>
         <th>Aplicar a</th>
-        <th>Cor de fundo</th>
-        <th>Cor da letra</th>
-        <th>Posição x</th>
+       <th>Posição x</th>
         <th>Posição y</th>
         <th>Inicia em</th>
+        <th>Velocidade</th>
+        <th>Cor de fundo</th>
+        <th>Cor da letra</th> 
+        <th>tamanho</th>
         <th>Extra</th>
     </tr>
     <?php   
@@ -141,20 +146,23 @@ input.sliderpos { width:40px !important;}
              <?php foreach ($tipos as $value => $key): ?><option value="<?=$value?>" <?php selected( $values["aplicar".$i][0], $value);?> ><?=$key; ?></option><?php endforeach;?>
           </select></td>
 
-
-      <td><select name="cor_fundo<?=$i?>" > 
-       <?php foreach ($text_css as $key => $value):?><option value="<?php echo 'fundo_'.$value;?>" <?php selected($values['cor_fundo'.$i][0], $value);?>><?=$key; ?></option><?php endforeach;?>
-       </select></td>
-      
-      <td><select name="cor<?=$i?>" > 
-        <?php foreach ($text_css as $key => $value): ?><option value="<?=$value?>" <?php selected( $values['cor'.$i][0], $value);?> ><?=$key; ?></option> <?php endforeach;?>
-         </select></td>
         <td><input type="text" class="sliderpos" maxlength="3" name="x<?=$i?>" value="<?=$values["x".$i][0]?>" /></td>
         <td><input type="text" class="sliderpos" maxlength="3" name="y<?=$i?>" value="<?=$values["y".$i][0]?>" /></td>
         <td><input type="text" class="sliderpos" maxlength="4" name="start<?=$i?>" value="<?=$values["start".$i][0]?>" /></td>
          <td><select name="speed<?=$i?>" id="speed">
              <?php foreach ($speeds as $value => $key): ?><option value="<?=$value?>" <?php selected( $values["speed".$i][0], $value);?> ><?=$key; ?></option><?php endforeach;?>
           </select></td>
+
+    <td><input type="text"  maxlength="8" class="color_picker"  id="cor_fundo<?=$i?>" name="cor_fundo<?=$i?>" value="<?=isset($values['cor_fundo'.$i])?$values['cor_fundo'.$i][0]: '#363432'?>" />
+     <div class="fabox" id="fabox_cor_fundo<?=$i?>"></div>    
+    </td>
+
+      <td><input type="text"  maxlength="8" class="color_picker"  id="cor<?=$i?>" name="cor<?=$i?>" value="<?=isset($values['cor'.$i])?$values['cor'.$i][0]: '#fff'?>" />
+         <div class="fabox" id="fabox_cor<?=$i?>"></div>    
+      </td>
+
+      <td><input type="text"  maxlength="2"  class="size" id="size<?=$i?>" name="size<?=$i?>" value="<?=isset($values['size'.$i])?$values['size'.$i][0]: '16'?>" />px</td>
+
 
 
         <td><input type="text" name="extra<?=$i?>" value="<?=$values["extra".$i][0]?>" /></td>
@@ -202,13 +210,15 @@ function slideradmin_save( $post_id )
                 $nef[$i]=intval($i);
                 update_post_meta( $post_id, 'tipo'.$i, esc_attr($_POST['tipo'.$i])  );  
                 update_post_meta( $post_id, 'aplicar'.$i, esc_attr($_POST['aplicar'.$i])  );  
-                update_post_meta( $post_id, 'cor_fundo'.$i, esc_attr($_POST['cor_fundo'.$i])  );  
-                update_post_meta( $post_id, 'cor'.$i, esc_attr($_POST['cor'.$i])  );  
                 update_post_meta( $post_id, 'x'.$i, esc_attr($_POST['x'.$i])  );  
                 update_post_meta( $post_id, 'y'.$i, esc_attr($_POST['y'.$i])  );  
                 update_post_meta( $post_id, 'start'.$i, esc_attr($_POST['start'.$i])  );  
                 update_post_meta( $post_id, 'extra'.$i, esc_attr($_POST['extra'.$i])  );  
                 update_post_meta( $post_id, 'speed'.$i, esc_attr($_POST['speed'.$i])  );  
+                update_post_meta( $post_id, 'cor_fundo'.$i, esc_attr($_POST['cor_fundo'.$i])  );  
+                update_post_meta( $post_id, 'cor'.$i, esc_attr($_POST['cor'.$i])  );  
+                update_post_meta( $post_id, 'size'.$i, esc_attr($_POST['size'.$i])  );  
+
             }
     } 
    
@@ -224,7 +234,27 @@ function slideradmin_save( $post_id )
 
 
 function slideradmin_js(){
-?>
+ ?>
+<script type="text/javascript">
+ 
+  jQuery(document).ready(function() {
+    jQuery(".color_picker").each(function(){
+        if (this.id) {
+            jQuery('#fabox_' + this.id).farbtastic('#' + this.id);
+        };
+    });
+    jQuery('.fabox').hide();
+    jQuery(".color_picker").click(function(){
+        jQuery(this).next().slideToggle()
+    });
+     jQuery(".color_picker").blur(function(){
+        jQuery(this).next().hide()
+    });
+
+  });
+ 
+</script>
+
 <script>
 function mostrar_preview(post_id){
 

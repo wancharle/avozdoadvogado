@@ -28,12 +28,12 @@ $values = get_post_custom($post->ID);
   if( isset($values["nef"])){
     $nef = unserialize($values["nef"][0]);
     foreach ($nef as $i):?>
-    <div class="caption <?=$values["tipo".$i][0]?> <?=$values["cor".$i][0]?> <?=$values["cor_fundo".$i][0]?>" data-x="<?=$values["x".$i][0]?>" data-y="<?=$values["y".$i][0]?>" data-speed="<?=$values["speed".$i][0]?>" data-start="<?=$values["start".$i]?>" >
+    <div class="caption texto <?=$values["tipo".$i][0]?>" style="font-size:<?=$values["size".$i][0]?>px ;color:<?=$values["cor".$i][0]?>;background-color: <?=$values["cor_fundo".$i][0]?>" data-x="<?=$values["x".$i][0]?>" data-y="<?=$values["y".$i][0]?>" data-speed="<?=$values["speed".$i][0]?>" data-start="<?=$values["start".$i][0]?>" >
 
 <?php 
     $aplicar = $values["aplicar".$i][0];
     switch ($aplicar){
-        case 1:the_title();break;
+        case 1:echo "<a href='";the_permalink();echo "'>";the_title();echo "</a>";break;
         case 2:the_excerpt();break;
         case 3:the_post_thumbnail();break;
         case 4: echo html_entity_decode($values["extra".$i][0]);break;
