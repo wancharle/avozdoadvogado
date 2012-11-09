@@ -26,7 +26,7 @@
 
  <!-- JQUERY KENBURN SLIDER  -->	
 <script src="<?php bloginfo('template_directory'); ?>/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>			
-<script src="<?php bloginfo('template_directory'); ?>/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>	
+<script src="<?php bloginfo('template_directory'); ?>/rs-plugin/js/jquery.themepunch.revolution.js"></script>	
 <script src="<?php bloginfo('template_directory'); ?>/js/jquery.easing.1.3.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/jquery.cycle.all.min.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/mediaelement-and-player.min.js"></script>

@@ -2266,11 +2266,12 @@
 												ifr.attr('id',frameID);
 												ifr.addClass("HasListener");
 												var player;
+                                                if (YT && YT.Player){
 												player = new YT.Player(frameID, {
 													events: {
 														"onStateChange": onPlayerStateChange
 													}
-												});
+												})};
 										}
 									} else {
 										if (ifr.attr('src').toLowerCase().indexOf('vimeo')>=0) {
