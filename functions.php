@@ -114,11 +114,53 @@ function get_videointerno() {
 
     $thumb = '';
 
-    ob_start();
-    ob_end_clean();
-
     $output = preg_match_all('/(\<iframe.*\<\/iframe\>)/is', $post->post_content, $matches);
-    $thumb = $matches [1] [0];
+    $thumb = $matches[1][0];
 
     return $thumb;
 }
+
+
+function get_iframe_src($string){
+    $thumb = '';
+
+    preg_match('/<iframe.*src=\"(.*)\".*><\/iframe>/isU', $string, $matches);
+
+    return $matches[1];
+
+
+}
+function get_the_iframe_src($post) {
+    return get_iframe_src($post->post_content);
+}
+function tem_videointerno($post) {
+
+
+    $thumb = '';
+
+    $total = preg_match_all('/(\<iframe.*\<\/iframe\>)/is', $post->post_content, $matches);
+    if ($total>0){
+        $url = get_iframe_src($matches[1][0]);  
+        if (strpos($url,"youtube") or strpos($url,"vimeo")){
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
+add_action( 'wp_insert_post', 'adiciona_tag_video' );
+function adiciona_tag_video( $post_id ) {
+    if ( $parent = wp_is_post_revision( $post_id ) )
+        $post_id = $parent;
+    $post = get_post( $post_id );
+    if ( $post->post_type != 'post' )
+        return;
+
+    if (!has_tag('video',$post_id)){
+        if( tem_videointerno($post)){ 
+            wp_set_post_terms( $post_id, 'video', 'post_tag', true );
+        }
+    }
+}
+
+?>

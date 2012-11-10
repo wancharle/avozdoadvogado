@@ -533,7 +533,7 @@ jQuery(document).ready(function($) {
 
 	/* end Media --> End */
 
-	/* ---------------------------------------------------- */
+/* ---------------------------------------------------- */
 	/*	Fancybox
 	/* ---------------------------------------------------- */
 	
@@ -553,13 +553,30 @@ jQuery(document).ready(function($) {
 			
 			if($('a.video-icon').length) {
 				
-				$('a.video-icon').on('click',function() {
+				$('.holder a.video-icon').on('click',function() {
                     window.location = this.href;
 					return false;
 				});
+
+               $('a.video-icon.play').on('click',function() {
+                    var href = this.href.replace(new RegExp('watch\\?v=', 'i'), 'embed/');
+                    if (href.indexOf("?")>0) href=href+"&autoplay=1"; else href=href+"?autoplay=1";
+                    $.fancybox({
+                        'type' : 'iframe',
+                        'href' : href,
+                        'overlayShow' : true,
+                        'centerOnScroll' : true,
+                        'speedIn' : 100,
+                        'speedOut' : 50,
+                        'width' : 640,
+                        'height' : 480
+                    });
+                    return false;
+                });
+
+
 			}
 	     //	$("#holder-depoimentos").unbind('click.fb')
-
 	
 		}
 		

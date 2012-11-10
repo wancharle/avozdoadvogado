@@ -30,6 +30,7 @@
 <script src="<?php bloginfo('template_directory'); ?>/js/jquery.easing.1.3.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/jquery.cycle.all.min.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/mediaelement-and-player.min.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/js/jquery.isotope.min.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/fancybox/jquery.fancybox.pack.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/custom.js"></script>
           <?php get_template_part("google_analytics");wp_footer(); ?>
