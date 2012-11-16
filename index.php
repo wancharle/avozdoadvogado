@@ -74,7 +74,7 @@
 					<ul>
               	 <?php
                 global $post;
-                $args = array( 'numberposts' => 3, 'category' => get_cat_ID("Notícias"), );
+                $args = array( 'numberposts' => 2, 'category' => get_cat_ID("Notícias"), );
                 $myposts = get_posts( $args );
                 foreach( $myposts as $post ) :  setup_postdata($post); ?>
                
