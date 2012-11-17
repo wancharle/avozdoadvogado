@@ -40,11 +40,9 @@
 		<ul id="portfolio-filter" class="portfolio-filter">
 
 			<li><a data-categories="*">Todos</a></li>
-			<li><a data-categories="destaque">Destaque</a></li>
 			<li><a data-categories="depoimentos">Depoimentos</a></li>
-			<li><a data-categories="chapa">Chapa</a></li>
-			<li><a data-categories="noticias">Notícias</a></li>
-			<li><a data-categories="descategorizado">outros</a></li>
+			<li><a data-categories="debates">Debates</a></li>
+			<li><a data-categories="audioslides">Audioslides</a></li>
 
 		</ul><!--/ #portfolio-filter -->
 		

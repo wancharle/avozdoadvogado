@@ -2355,10 +2355,12 @@ article.entry:last-of-type {margin-bottom: 20px;}
 			   -moz-border-radius: 3px;
 					border-radius: 3px;
 		}
-		
+	    #search-menu #searchform{padding:7px;position:relative};	
 			#sidebar .widget_search input[type="text"] {padding-right: 30px;}
-		
-			#sidebar .widget_search button[type="submit"] {
+	        #search-menu {width:200px;position:relative;right:0px;top:92px;height:0px;z-index:9000;float:right;}	
+
+			#sidebar .widget_search button[type="submit"],
+            #search-menu button[type="submit"] {
 				position: absolute;
 				right: 8px;
 				top: 8px;
@@ -2373,7 +2375,8 @@ article.entry:last-of-type {margin-bottom: 20px;}
 				transition: none;
 			}
 			
-			#sidebar .widget_search button[type="submit"]:hover {background-position: 0 bottom;}
+			#sidebar .widget_search button[type="submit"]:hover,
+            #search-menu button[type="submit"]:hover {background-position: 0 bottom;}
 		
 		/* ---------------------------------------- */
 		/*	Popular Posts

@@ -47,7 +47,12 @@
 	<header id="header">
 		
 		<div class="container" style="margin-top:50px;">
-			
+		    <div id="search-menu">
+
+		<? get_search_form() ?>	
+            </div>
+
+	
 			<!-- - - - - - - - - - - - Logo - - - - - - - - - - - - - -->	
 			
                 <div id="logo2">
@@ -79,8 +84,7 @@
 'container_id'=> 'navigation',
 'menu_class'=> 'clearfix' ) );?>
 			<!-- - - - - - - - - - - - end Navigation - - - - - - - - - - - - - -->	
-			
-		</div><!--/ .container-->
+        		</div><!--/ .container-->
 		
 	</header><!--/ #header-->
 	
