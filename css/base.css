@@ -3448,3 +3448,5 @@ article.entry:last-of-type {margin-bottom: 20px;}
 }
 .displaynone { display:none;}
 .form-error{ background-color:#c1272d;color:#fff;}
+/* esconde really_simple_share nos contents */
+.disable-really div.really_simple_share {display:none;}

@@ -163,4 +163,22 @@ function adiciona_tag_video( $post_id ) {
     }
 }
 
+// custom post audioslides
+add_action( 'init', 'criando_post_type' );
+function criando_post_type() {
+    register_post_type( 'audioslide',
+        array(
+            'labels' => array(
+                'name' => __( 'Audioslides' ),
+                'singular_name' => __( 'Audioslide' )
+            ),
+            'menu_position' =>5,
+            'public' => true,
+            'rewrite' => false,
+            'has_archive' => false,
+            'supports' => array('title', 'editor','excerpt'),
+            'taxonomies' => array('category'),
+        )
+    );
+}
 ?>
