@@ -69,7 +69,7 @@
                 <li><div class="fb-like" style="margin-top:7px;margin-right:10px;" data-href="http://www.facebook.com/pages/A-Voz-do-Advogado/506569536020966" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div></li>
 				<li class="twitter"><a href="http://twitter.com/homeromafra" target="_blank">Twitter<span></span></a></li>
 				<li class="facebook"><a href="http://facebook.com/pages/Homero-Mafra/506569536020966" target="_blank">Facebook<span></span></a></li>
-				<li class="dribble"><a href="http://followgram.me/homeromafra" target="_blank">Instagram<span></span></a></li>
+				<li class="dribble"><a href="http://instagram.com/homeromafra" target="_blank">Instagram<span></span></a></li>
 				<li class="youtube"><a href="http://youtube.com/avozdoadvogado2012" target="_blank">YouTube<span></span></a></li>
 			</ul><!--/ .social-icons-->
 			
