@@ -72,7 +72,7 @@
                             the_post_thumbnail(array(180,180));
                         else
                             echo "<img src='".$video_thumbnail."' width='180' height='135' />";
-                    ?></a><div style="width:170px;white-space:normal;height:70px;overflow:hidden;"><a href="<?the_permalink()?>"><? the_title()?></a></div></li>
+                    ?></a><div style="width:170px;white-space:normal;height:80px;overflow:hidden;"><a href="<?the_permalink()?>"><? the_title()?></a></div></li>
 
                 <?   endif;
                 endforeach; 

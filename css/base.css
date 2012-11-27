@@ -3451,8 +3451,11 @@ article.entry:last-of-type {margin-bottom: 20px;}
 /* esconde really_simple_share nos contents */
 .disable-really div.really_simple_share {display:none;}
 
-.elastislide-list{
+#carousel{
+
+    height:215px!important;
     max-height:300px!important;
+    min-height:215px!important;
     }
 .elastislide-list img.attachment-180x180{
  width:180px !important;
