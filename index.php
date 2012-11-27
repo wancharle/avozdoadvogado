@@ -18,9 +18,11 @@
 		<section class="holder clearfix">
 			 <?php
                 global $post;
-                $args = array( 'numberposts' => 3, 'category' => "".get_cat_ID("TV Homero").",".get_cat_ID("Depoimentos") );
+                $args = array( 'numberposts' => -1, 'category' => get_cat_ID("Depoimentos") );
                 $myposts = get_posts( $args );
-                foreach( $myposts as $post ) :  setup_postdata($post); ?>
+                $tres = array_slice($myposts,0,3);    
+                $resto = array_slice($myposts,3);
+                foreach( $tres as $post ) :  setup_postdata($post); ?>
                         
 				
 			<div class="one-third column">
@@ -56,9 +58,32 @@
 		
 		
 			<div class="clear"></div>
+ 		</section><!--/ .holder-->
+        <section class="clearfix">
+	<div class="full-width">
+        <h3>Confira todos os apoios</h3>
+        <ul id="carousel" class="elastislide-list" >
+                 <?php
+                foreach( $resto as $post ) : 
+                    setup_postdata($post);
+                    if (has_post_thumbnail() || (( $video_thumbnail = get_video_thumbnail() ) != null ) ):
+                    echo "<li><a href='".get_permalink()."'>";
+                        if (has_post_thumbnail()) 
+                            the_post_thumbnail(array(180,180));
+                        else
+                            echo "<img src='".$video_thumbnail."' width='180' height='135' />";
+                    ?></a><div style="width:170px;white-space:normal;height:70px;overflow:hidden;"><a href="<?the_permalink()?>"><? the_title()?></a></div></li>
 
-		</section><!--/ .holder-->
-		
+                <?   endif;
+                endforeach; 
+                ?>
+    
+
+            </ul>
+
+           </div>
+        </section>	
+<br><br><br>
 		<!-- - - - - - - - - - - - end Holder - - - - - - - - - - - - - -->
 
 		<!-- - - - - - - - - - - - - - - Bottom Sidebar - - - - - - - - - - - - - - - - -->	

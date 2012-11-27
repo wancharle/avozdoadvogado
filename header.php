@@ -18,6 +18,7 @@
 	
     <link rel="shortcut" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico" />
 
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/elastislide.css" media="screen" />	
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/skeleton.css" media="screen" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" media="screen" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/mediaelementplayer.css" media="screen" />

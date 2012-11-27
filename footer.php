@@ -33,6 +33,15 @@
 <script src="<?php bloginfo('template_directory'); ?>/js/jquery.isotope.min.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/fancybox/jquery.fancybox.pack.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/custom.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/js/modernizr.custom.17475.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/js/jquerypp.custom.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/js/jquery.elastislide.js"></script>
+    <script type="text/javascript">
+            
+            $( '#carousel' ).elastislide();
+            
+        </script>
+
           <?php get_template_part("google_analytics");wp_footer(); ?>
             
 </body>
